@@ -13,6 +13,7 @@ const CategoryMealScreen = props => {
           })
         }
       />
+      <Button title="Voltar" onPress={() => props.navigation.pop()} />
     </View>
   );
 };

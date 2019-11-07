@@ -22,6 +22,15 @@ const CategoryMealScreen = props => {
   );
 };
 
+CategoryMealScreen.navigationOptions = navigationData => {
+  const catId = navigationData.navigation.getParam("categoryId");
+  const categoriaEscolhida = CATEGORIES.find(cat => cat.id === catId);
+
+  return {
+    headerTitle: categoriaEscolhida.title
+  };
+};
+
 const styles = StyleSheet.create({
   screen: {
     flex: 1,

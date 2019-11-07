@@ -16,7 +16,10 @@ const CategoryScreen = props => {
       <TouchableOpacity
         onPress={() => {
           props.navigation.navigate({
-            routeName: "CategoryMeals"
+            routeName: "CategoryMeals",
+            params: {
+              categoryId: itemData.item.id
+            }
           });
         }}
         style={styles.gridItem}

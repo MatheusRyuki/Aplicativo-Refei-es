@@ -41,11 +41,7 @@ const CategoryScreen = props => {
 };
 
 CategoryScreen.navigationOptions = {
-  headerTitle: "Categorias de Culinária",
-  headerStyle: {
-    backgroundColor: Platform.OS === "android" ? Colors.primaryColor : "white"
-  },
-  headerTintColor: Platform.OS === "android" ? "white" : Colors.primaryColor
+  headerTitle: "Categorias de Culinária"
 };
 
 const styles = StyleSheet.create({

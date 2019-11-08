@@ -31,14 +31,13 @@ const CategoryMealScreen = props => {
   );
 
   return (
-    <View style={styles.screen}>
-      <FlatList
-        data={pratosSelecionados}
-        keyExtractor={(item, index) => item.id}
-        renderItem={renderItem}
-        style={{ width: "100%" }}
-      />
-    </View>
+    <FlatList
+      style={styles.screen}
+      data={pratosSelecionados}
+      keyExtractor={(item, index) => item.id}
+      renderItem={renderItem}
+      style={{ width: "100%" }}
+    />
   );
 };
 

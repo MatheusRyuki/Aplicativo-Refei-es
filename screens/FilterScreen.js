@@ -1,12 +1,40 @@
-import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import React, { useState } from "react";
+import { View, Text, StyleSheet, Switch, Platform } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import HeaderButton from "../components/HeaderButton";
+import Colors from "../constants/Colors";
 
 const FilterScreen = props => {
+  const [glutten, setGlutten] = useState(false);
+  const [lactose, setLactose] = useState(false);
+  const [vegetariano, setVegetariano] = useState(false);
+  const [vegan, setVegan] = useState(false);
+
+  const FilterItem = props => {
+    return (
+      <View style={styles.filterContainer}>
+        <Text>{props.label}</Text>
+        <Switch
+          value={props.state}
+          onValueChange={value => props.onChange(value)}
+          trackColor={{ true: Colors.primaryColor }}
+          thumbColor={Platform.OS === "android" ? Colors.primaryColor : "white"}
+        />
+      </View>
+    );
+  };
+
   return (
     <View style={styles.screen}>
-      <Text>The FilterScreen!</Text>
+      <Text style={styles.title}>Filtros / restrições</Text>
+      <FilterItem label="Sem Glúten" state={glutten} onChange={setGlutten} />
+      <FilterItem label="Sem Lactose" state={lactose} onChange={setLactose} />
+      <FilterItem
+        label="Vegetariano"
+        state={vegetariano}
+        onChange={setVegetariano}
+      />
+      <FilterItem label="Vegan" state={vegan} onChange={setVegan} />
     </View>
   );
 };
@@ -29,8 +57,20 @@ FilterScreen.navigationOptions = NavData => {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    justifyContent: "center",
     alignItems: "center"
+  },
+  title: {
+    fontFamily: "open-sans-bold",
+    fontSize: 22,
+    margin: 20,
+    textAlign: "center"
+  },
+  filterContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    width: "80%",
+    marginVertical: 15
   }
 });
 

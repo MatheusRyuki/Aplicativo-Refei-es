@@ -26,7 +26,7 @@ const MealItem = props => {
             </ImageBackground>
           </View>
           <View style={{ ...styles.mealRow, ...styles.mealDetails }}>
-            <DefaultText>{props.duracao} minutos</DefaultText>
+            <DefaultText>{props.duracao} M</DefaultText>
             <DefaultText>{props.complexidade.toUpperCase()}</DefaultText>
             <DefaultText>{props.preco.toUpperCase()}</DefaultText>
           </View>

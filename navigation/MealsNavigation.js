@@ -8,7 +8,7 @@ import CategoriesScreen from "../screens/CategoryScreen";
 import CategoriesMealsScreen from "../screens/CategoryMealScreen";
 import MealDetailScreen from "../screens/MealDetailScreen";
 import Colors from "../constants/Colors";
-import { Platform } from "react-native";
+import { Platform, Text } from "react-native";
 import FavoriteScreen from "../screens/FavoritesScreen";
 import { Ionicons } from "@expo/vector-icons";
 import React from "react";
@@ -18,6 +18,14 @@ import FilterScreen from "../screens/FilterScreen";
 const defaultNavConfig = {
   headerStyle: {
     backgroundColor: Platform.OS === "android" ? Colors.primaryColor : "white"
+  },
+  headerTitleStyle: {
+    fontFamily: "open-sans-bold",
+    fontWeight: undefined
+  },
+  headerBackStyle: {
+    fontFamily: "open-sans",
+    fontWeight: undefined
   },
   headerTintColor: Platform.OS === "android" ? "white" : Colors.primaryColor
 };
@@ -71,7 +79,20 @@ const tabConfig = {
           <Ionicons name="ios-restaurant" size={25} color={tabInfo.tintColor} />
         );
       },
-      tabBarColor: Colors.primaryColor
+      tabBarColor: Colors.primaryColor,
+      tarBarLabel:
+        Platform.OS === "android" ? (
+          <Text
+            style={{
+              fontFamily: "open-sans-bold",
+              fontWeight: undefined
+            }}
+          >
+            Refeições
+          </Text>
+        ) : (
+          "Refeições"
+        )
     }
   },
   Favoritos: {
@@ -80,7 +101,19 @@ const tabConfig = {
       tabBarIcon: tabInfo => {
         return <Ionicons name="ios-star" size={25} color={tabInfo.tintColor} />;
       },
-      tabBarColor: Colors.accentColor
+      tabBarColor: Colors.accentColor,
+      tarBarLabel:
+        Platform.OS === "android" ? (
+          <Text
+            style={{
+              fontFamily: "open-sans-bold"
+            }}
+          >
+            Favoritos
+          </Text>
+        ) : (
+          "Favoritos"
+        )
     }
   }
 };

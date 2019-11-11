@@ -1,7 +1,8 @@
 import {
   createStackNavigator,
   createAppContainer,
-  createBottomTabNavigator
+  createBottomTabNavigator,
+  createDrawerNavigator
 } from "react-navigation";
 import CategoriesScreen from "../screens/CategoryScreen";
 import CategoriesMealsScreen from "../screens/CategoryMealScreen";
@@ -12,6 +13,7 @@ import FavoriteScreen from "../screens/FavoritesScreen";
 import { Ionicons } from "@expo/vector-icons";
 import React from "react";
 import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
+import FilterScreen from "../screens/FilterScreen";
 
 const defaultNavConfig = {
   headerStyle: {
@@ -46,6 +48,10 @@ const FavNavigator = createStackNavigator(
     defaultNavigationOptions: defaultNavConfig
   }
 );
+
+const FilterNavigator = createStackNavigator({
+  Filter: FilterScreen
+});
 
 const tabConfig = {
   Refeições: {
@@ -82,4 +88,9 @@ const MealsFavTabNavigator =
         }
       });
 
-export default createAppContainer(MealsFavTabNavigator);
+const MainNavigator = createDrawerNavigator({
+  MealsFav: MealsFavTabNavigator,
+  Filters: FilterNavigator
+});
+
+export default createAppContainer(MainNavigator);

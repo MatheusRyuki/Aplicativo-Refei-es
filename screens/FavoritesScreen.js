@@ -12,9 +12,7 @@ const FavoriteScreen = props => {
   if (!availableMeals || availableMeals.length === 0) {
     return (
       <View style={styles.content}>
-        <DefaultText>
-          Não foi encontrado favoritos. Comece adicionando alguns!
-        </DefaultText>
+        <DefaultText>Não foi encontrado favoritos.</DefaultText>
       </View>
     );
   }

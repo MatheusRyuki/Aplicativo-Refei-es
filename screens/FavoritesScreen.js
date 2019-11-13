@@ -3,9 +3,21 @@ import { useSelector } from "react-redux";
 import MealList from "../components/MealList";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import HeaderButton from "../components/HeaderButton";
+import { View, StyleSheet } from "react-native";
+import DefaultText from "../components/DefaultText";
 
 const FavoriteScreen = props => {
   const availableMeals = useSelector(state => state.meals.favoriteMeals);
+
+  if (!availableMeals || availableMeals.length === 0) {
+    return (
+      <View style={styles.content}>
+        <DefaultText>
+          Não foi encontrado favoritos. Comece adicionando alguns!
+        </DefaultText>
+      </View>
+    );
+  }
 
   return <MealList pratos={availableMeals} navigation={props.navigation} />;
 };
@@ -24,5 +36,13 @@ FavoriteScreen.navigationOptions = NavData => {
     )
   };
 };
+
+const styles = StyleSheet.create({
+  content: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center"
+  }
+});
 
 export default FavoriteScreen;

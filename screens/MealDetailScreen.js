@@ -41,12 +41,10 @@ const MealDetail = props => {
 };
 
 MealDetail.navigationOptions = navigationData => {
-  const availableMeals = useSelector(state => state.meals.meals);
-  const mealId = navigationData.navigation.getParam("mealId");
-  const selectedMeal = availableMeals.find(meal => meal.id === mealId);
+  const title = navigationData.navigation.getParam("mealTitle");
 
   return {
-    headerTitle: selectedMeal.title,
+    headerTitle: title,
     headerRight: (
       <HeaderButtons HeaderButtonComponent={HeaderButton}>
         <Item title="Favorito" iconName="ios-star" onPress={() => {}} />

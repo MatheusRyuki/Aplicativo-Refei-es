@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { View, Text, StyleSheet, Switch, Platform } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import HeaderButton from "../components/HeaderButton";
@@ -9,6 +9,23 @@ const FilterScreen = props => {
   const [lactose, setLactose] = useState(false);
   const [vegetariano, setVegetariano] = useState(false);
   const [vegan, setVegan] = useState(false);
+
+  const { navigation } = props;
+
+  const saveFilters = useCallback(() => {
+    const appliedFilters = {
+      gluttenFree: glutten,
+      lactoseFree: lactose,
+      vegetariano: vegetariano,
+      vegan: vegan
+    };
+
+    console.log(appliedFilters);
+  }, [glutten, lactose, vegetariano, vegan]);
+
+  useEffect(() => {
+    navigation.setParams({ save: saveFilters });
+  }, [saveFilters]);
 
   const FilterItem = props => {
     return (
@@ -48,6 +65,15 @@ FilterScreen.navigationOptions = NavData => {
           title="Menu"
           iconName="ios-menu"
           onPress={() => NavData.navigation.toggleDrawer()}
+        />
+      </HeaderButtons>
+    ),
+    headerRight: (
+      <HeaderButtons HeaderButtonComponent={HeaderButton}>
+        <Item
+          title="Save"
+          iconName="ios-save"
+          onPress={NavData.navigation.getParam("save")}
         />
       </HeaderButtons>
     )
